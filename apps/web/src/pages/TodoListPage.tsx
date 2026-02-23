@@ -141,11 +141,11 @@ export default function TodoListPage() {
                 onClick={handleLogout}
                 className="text-sm text-red-500 hover:text-red-600 transition"
               >
-                Logout
+                Keluar
               </button>
             </div>
             <p className="text-gray-500 text-sm mb-6">
-              Logged in as: <span className="font-semibold">{userId}</span>
+              Masuk dengan nama: <span className="font-semibold">{userId}</span>
             </p>
 
             <form onSubmit={handleCreate} className="flex gap-2 mb-4">
