@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # Backend (API)
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: mini-api
+    env_file:
+      - ./apps/api/.env
+    ports:
+      - "3001:3000" 
+    depends_on:
+      - postgres 
+    networks:
+      - mini-network
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: mini-web
+    ports:
+      - "3000:80" 
+    depends_on:
+      - api 
+    networks:
+      - mini-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: mini-postgres
+    restart: always
+    env_file:
+      - ./apps/api/.env
+    ports:
+      - "5432:5432" 
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mini-network
+
+networks:
+  mini-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
