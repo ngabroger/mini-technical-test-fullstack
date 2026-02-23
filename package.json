@@ -1,0 +1,24 @@
+{
+  "name": "mini-technical-test-fullstack",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "typeorm": "^0.3.28"
+  },
+  "scripts": {
+    "dev": "concurrently -n API,WEB \"npm --prefix apps/api run start:dev\" \"npm --prefix apps/web run dev\"",
+    "dev:api": "npm --prefix apps/api run start:dev",
+    "dev:web": "npm --prefix apps/web run dev"
+  },
+  "dependencies": {
+    "@nestjs/config": "^4.0.3",
+    "@nestjs/typeorm": "^11.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.3",
+    "pg": "^8.18.0"
+  }
+}
