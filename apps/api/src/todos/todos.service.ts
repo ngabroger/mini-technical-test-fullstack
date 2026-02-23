@@ -27,6 +27,14 @@ export class TodosService {
         return this.todosRepository.save(todo);
     }
 
+    findOne(id: number): Promise<Todo | null>{
+        return this.todosRepository.findOneBy({id});
+    }
+
+    remove(id: number): Promise<void>{
+        return this.todosRepository.delete(id).then(() => undefined);
+    }
+
     async update(id:number, updateTodoDto: UpdateTodoDto): Promise<Todo | null>{
         await this.todosRepository.update(id, updateTodoDto);
         return this.todosRepository.findOneBy({id});
